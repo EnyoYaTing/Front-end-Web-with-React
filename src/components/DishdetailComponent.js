@@ -32,39 +32,41 @@ class DishDetail extends Component {
     }
 
     renderComments(comments) {
-        if (comments == null) {
+        if (comments != null) {
+            const cmnts = comments.map((commnts) => {
+                return (
+                    <div key={commnts.id}>
+                        <li>
+                            <p> {commnts.comment} </p>
+                            <p> -- {commnts.author},
+                                &nbsp;
+                                {new Intl.DateTimeFormat('en-US', {
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: '2-digit'
+                                }).format(new Date(commnts.date))}
+                            </p>
+                        </li>
+                    </div>
+                );
+            });
+
             return (
-            <div></div>
+                <div className="col-12 col-md-5 m-1">
+                    <h4> Comments </h4>
+                    <ul className="list-unstyled">
+                        {cmnts}
+                    </ul>
+                </div>
+            );  
+        // if comments is empty     
+        } else {
+            return (
+                <div></div>
             );
         }
-        const cmnts = comments.map((comment) => {
-            return (
-                <div key={comment.id}>
-                    <li>
-                        <p>{comment.comment}</p>
-                        <p>-- {comment.author},
-                        &nbsp;
-                            {new Intl.DateTimeFormat('en-US', {
-                                year: 'numeric',
-                                month: 'short',
-                                day: '2-digit'
-                            }).format(new Date(comment.date))}
-                        </p>
-                    </li>
-                </div>
-            );
-        });
-        
-        return (
-            <div className='col-12 col-md-5 m-1'>
-                <h4> Comments </h4>
-                <ul className='list-unstyled'>
-                    {cmnts}
-                </ul>
-            </div>
-        )
     }
-
+    
     render () {
         const selectedish = this.props.dish 
         if (selectedish == null) {
