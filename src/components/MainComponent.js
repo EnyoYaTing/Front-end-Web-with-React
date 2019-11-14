@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import Home from './HomeComponent';
 import Menu from './MenuComponent';
 import DishDetail from './DishdetailComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { DISHES } from '../shared/dishes';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 class Main extends Component {
 
@@ -11,24 +13,24 @@ class Main extends Component {
         super(props);
         this.state = {
             dishes: DISHES,  // lifting the state up
-            selectedDish: null
         };
     }
 
-    onDishselect(dishID) {
-        this.setState({ 
-            selectedDish: dishID
-        });
-    }
-
     render() {
+        const HomePage = () => {
+            return(
+                <Home />
+            );
+          }
+
         return (
             <div>
                 <Header />
-                <Menu dishes={this.state.dishes}
-                    onClick={(dishID) => this.onDishselect(dishID)}/> 
-                <DishDetail 
-                    dish = {this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
+                    <Switch>
+                        <Route path='/home' component={HomePage} />
+                        <Route exact path="/menu" component={() => <Menu dishes={this.state.dishes} />} />
+                        <Redirect to="/home" />  
+                    </Switch>
                 <Footer />
             </div>
         );
@@ -36,3 +38,6 @@ class Main extends Component {
 }
 
 export default Main;
+
+/* <Redirect to="/Home" /> this is a default path. anything dosemt match Home or Menu, 
+will be returned to Home */
