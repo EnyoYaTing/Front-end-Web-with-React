@@ -3,22 +3,30 @@ import React, { Component } from 'react';
 import Main from './components/MainComponent';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore';
+
+const store = ConfigureStore();
 
 class App extends Component {
 
   render() {  
     return (
-        // adding BrowserRouter. the application now is congigured to make use of the react router
-        <BrowserRouter>
-            <div className="App">
-                <Main /> 
-            </div>
-        </BrowserRouter>
+       //adding BrowserRouter. the application now is congigured to make use of the react router
+       <Provider store={store}>
+          <BrowserRouter>
+              <div className="App">
+                  <Main />
+              </div>
+          </BrowserRouter>
+      </Provider>
     );
   }
 }
 
-// function App() {
+export default App;
+
+{/* // function App() {
 //   return (
 //     <div className="App">
 //       <header className="App-header">
@@ -39,4 +47,4 @@ class App extends Component {
 //   );
 // }
 
-export default App;
+export default App; */}
