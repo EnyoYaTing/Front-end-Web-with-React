@@ -40,22 +40,23 @@ class Contact extends Component {
     
                 <div className="row row-content">
                     <div className="col-12">
-                    <h3>Location Information</h3>
+                        <h3>Location Information</h3>
                     </div>
                     <div className="col-12 col-sm-4 offset-sm-1">
-                            <h5>Our Address</h5>
-                            <address>
+                        <h5>Our Address</h5>
+                        <address>
                             121, Clear Water Bay Road<br />
                             Clear Water Bay, Kowloon<br />
                             HONG KONG<br />
                             <i className="fa fa-phone"></i>: +852 1234 5678<br />
                             <i className="fa fa-fax"></i>: +852 8765 4321<br />
                             <i className="fa fa-envelope"></i>: <a href="mailto:confusion@food.net">confusion@food.net</a>
-                            </address>
+                        </address>
                     </div>
                     <div className="col-12 col-sm-6 offset-sm-1">
                         <h5>Map of our Location</h5>
                     </div>
+                    
                     <div className="col-12 col-sm-11 offset-sm-1">
                         <div className="btn-group" role="group">
                             <a role="button" className="btn btn-primary" href="tel:+85212345678"><i className="fa fa-phone"></i> Call</a>
@@ -64,13 +65,15 @@ class Contact extends Component {
                         </div>
                     </div>
                 </div>
+
+                {/* using react-redux-form */}
                 <div className="row row-content">
                     <div className="col-12">
                         <h3>Send Us Your feedback</h3>
                     </div>
                     <div className="col-12 col-md-9">
-                    <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
-                    <Row className="form-group">
+                        <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+                            <Row className="form-group">
                                 <Label htmlFor="firstname" md={2}>First Name</Label>
                                 <Col md={10}>
                                     <Control.text model=".firstname" id="firstname" name="firstname"
@@ -79,7 +82,7 @@ class Contact extends Component {
                                         validators={{
                                             required, minLength: minLength(3), maxLength: maxLength(15)
                                         }}
-                                         />
+                                    />
                                     <Errors
                                         className="text-danger"
                                         model=".firstname"
