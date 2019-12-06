@@ -8,7 +8,7 @@ import { baseUrl } from '../shared/baseUrl';
     function RenderMenuItem ({dish, onClick}) {
         return (
             <Card> 
-                <Link to={'/menu/${dish.id}'} >
+                <Link to={`/menu/${dish.id}`}>
                     <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />                    
                         <CardImgOverlay>
                             <CardTitle> {dish.name} </CardTitle>
@@ -26,7 +26,7 @@ import { baseUrl } from '../shared/baseUrl';
                 // key: every item require key attribute to specift it.
                 // the key helps React to recognise each one of these elements, uniquely. 
                 <div key={dish.id} className="col-12 col-md-5 m-1">
-                    <RenderMenuItem dish={dish} />
+                    <RenderMenuItem dish={dish} onClick={props.onClick}/>
                 </div>    
             );
         }); // take the JS objects
